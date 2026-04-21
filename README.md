@@ -1,2 +1,2 @@
 # Advanced-programming-project 
-`Advanced Programming team project by Tarek, Safy, Sama, Mazen, Sandy, and Habiba under the guidance of Dr. Mohamed Fouad, focused on building a high-quality Java project through teamwork, creativity, and productivity.`
+`Advanced Java backend development project focused on practical implementation of JDBC, Servlets, Spring Boot, and Maven, covering core web development concepts, backend architecture, and integration workflows.
