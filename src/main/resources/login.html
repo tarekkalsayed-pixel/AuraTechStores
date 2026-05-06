@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Stores</div>
+    <div>
+        <a href="/products">Products</a>
+        <a href="/register">Register</a>
+    </div>
+</div>
+<div class="form-box">
+    <h1>Login</h1>
+    <p class="note">Access your Aura Tech account.</p>
+    <form action="/login" method="post">
+        <label>Username</label>
+        <input type="text" name="username" required minlength="4">
+        <label>Password</label>
+        <input type="password" name="password" required minlength="5">
+        <button class="btn" type="submit">Login</button>
+    </form>
+    <p class="note">Demo accounts: admin / 12345 or user / 12345</p>
+</div>
+</body>
+</html>
