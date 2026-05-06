@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech User Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> User</div>
+    <div>
+        <a href="/user/home">Home</a>
+        <a href="/products">Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="form-box">
+    <h1>User Profile</h1>
+    <p><b>Username:</b> <span th:text="${user.username}">username</span></p>
+    <p><b>Email:</b> <span th:text="${user.email}">email</span></p>
+    <p><b>Role:</b> <span th:text="${user.role}">role</span></p>
+</div>
+</body>
+</html>

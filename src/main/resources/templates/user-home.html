@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech User Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> User</div>
+    <div>
+        <a href="/user/profile">Profile</a>
+        <a href="/products">Products</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<section class="hero">
+    <h1>Welcome to Aura Tech Stores.</h1>
+    <p>Browse elegant electronics and check branch stock.</p>
+</section>
+<div class="container">
+    <div class="card-grid">
+        <div class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" alt="Product image">
+            <span class="badge" th:text="${p.branch}">Branch</span>
+            <h2 th:text="${p.name}">Product</h2>
+            <p th:text="${p.description}">Description</p>
+            <p><b>Category:</b> <span th:text="${p.category}">Category</span></p>
+            <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
+            <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+        </div>
+    </div>
+</div>
+</body>
+</html>

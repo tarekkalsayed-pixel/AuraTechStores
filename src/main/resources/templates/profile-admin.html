@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech Admin Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Admin</div>
+    <div>
+        <a href="/admin/home">Home</a>
+        <a href="/admin/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="form-box">
+    <h1>Admin Profile</h1>
+    <p><b>Username:</b> <span th:text="${user.username}">username</span></p>
+    <p><b>Email:</b> <span th:text="${user.email}">email</span></p>
+    <p><b>Role:</b> <span th:text="${user.role}">role</span></p>
+    <p class="note">Admin can add, edit, delete products and send simple offer emails.</p>
+</div>
+</body>
+</html>
