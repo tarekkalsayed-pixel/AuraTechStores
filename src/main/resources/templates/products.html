@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech Products</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Stores</div>
+    <div>
+        <a href="/products">Products</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+</div>
+<section class="hero">
+    <h1>Premium devices, available in Cairo and Alexandria.</h1>
+    <p>Last selected branch: <b th:text="${lastBranch}">None</b></p>
+    <div class="actions">
+        <a class="btn" href="/products?branch=Cairo">Cairo</a>
+        <a class="btn btn-dark" href="/products?branch=Alexandria">Alexandria</a>
+        <a class="btn btn-dark" href="/products">All Products</a>
+    </div>
+</section>
+<div class="container">
+    <div class="card-grid">
+        <div class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" alt="Product image">
+            <span class="badge" th:text="${p.branch}">Cairo</span>
+            <h2 th:text="${p.name}">Product</h2>
+            <p th:text="${p.description}">Description</p>
+            <p><b>Category:</b> <span th:text="${p.category}">Phones</span></p>
+            <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
+            <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+        </div>
+    </div>
+</div>
+</body>
+</html>

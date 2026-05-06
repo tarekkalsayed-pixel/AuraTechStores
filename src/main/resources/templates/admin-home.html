@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Admin</div>
+    <div>
+        <a href="/admin/profile">Profile</a>
+        <a href="/admin/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<section class="hero">
+    <h1>Product management dashboard.</h1>
+    <p>Add, edit, delete products and manage branch stock.</p>
+    <div class="actions">
+        <a class="btn" href="/admin/products/add">Add Product</a>
+    </div>
+</section>
+<div class="container">
+    <div class="card-grid">
+        <div class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" alt="Product image">
+            <span class="badge" th:text="${p.branch}">Branch</span>
+            <h2 th:text="${p.name}">Product</h2>
+            <p th:text="${p.description}">Description</p>
+            <p><b>Category:</b> <span th:text="${p.category}">Category</span></p>
+            <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
+            <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+            <div class="actions">
+                <a class="btn" th:href="@{/admin/products/edit/{id}(id=${p.id})}">Edit</a>
+                <a class="btn btn-red" th:href="@{/admin/products/delete/{id}(id=${p.id})}">Delete</a>
+            </div>
+            <form action="/admin/send-email" method="post">
+                <label>Offer Email</label>
+                <input type="email" name="email" placeholder="customer@example.com" required>
+                <input type="hidden" name="productName" th:value="${p.name}">
+                <button class="btn btn-dark" type="submit">Send Offer Email</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
