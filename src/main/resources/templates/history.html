@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Tech History</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> History</div>
+    <div>
+        <a href="/admin/home">Admin Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+<section class="hero">
+    <h1>Operations history.</h1>
+    <p>Track product and email actions inside the system.</p>
+</section>
+<div class="container">
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Action</th>
+            <th>Details</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="h : ${history}">
+            <td th:text="${h.username}">User</td>
+            <td th:text="${h.action}">Action</td>
+            <td th:text="${h.details}">Details</td>
+            <td th:text="${h.createdAt}">Date</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
