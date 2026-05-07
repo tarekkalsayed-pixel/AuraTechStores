@@ -17,8 +17,8 @@ public class EmailService {
     public void sendOffer(String email, String productName) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        message.setSubject("Aura Tech Store Offer");
-        message.setText("Hello, we have a special offer for this product.");
+        message.setSubject("Aura Tech Store product discount");
+        message.setText("Hello, we have a special offer for you please visit our website.");
         mailSender.send(message);
         historyService.add("admin", "EMAIL", "Offer email sent to " + email + " about " + productName);
     }
