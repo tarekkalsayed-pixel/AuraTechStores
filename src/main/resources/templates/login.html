@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Aura Tech Stores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Stores</div>
+    <div>
+        <a th:href="@{/}">Products</a>
+        <a th:href="@{/register}">Register</a>
+    </div>
+</div>
+
+<div class="form-box">
+    <h1>Login</h1>
+    <p class="note">Default accounts: admin / 12345 or user / 12345</p>
+
+    <p th:if="${param.error}" class="error">Invalid username or password.</p>
+    <p th:if="${param.logout}" class="note">You have been logged out successfully.</p>
+    <p th:if="${success}" class="note" th:text="${success}"></p>
+
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="admin or user" required autofocus>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="12345" required>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p class="note">New user? <a th:href="@{/register}">Create an account</a></p>
+</div>
+</body>
+</html>

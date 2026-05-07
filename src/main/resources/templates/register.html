@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Aura Tech Stores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">Aura <span>Tech</span> Stores</div>
+    <div>
+        <a th:href="@{/}">Products</a>
+        <a th:href="@{/login}">Login</a>
+    </div>
+</div>
+
+<div class="form-box">
+    <h1>Create Account</h1>
+    <p class="note">Register a new customer account.</p>
+
+    <p th:if="${error}" class="error" th:text="${error}"></p>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <label for="username">Username</label>
+        <input id="username" type="text" th:field="*{username}" placeholder="Choose username" required>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" th:field="*{email}" placeholder="name@example.com" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" th:field="*{password}" placeholder="Choose password" required>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <p class="note">Already have an account? <a th:href="@{/login}">Login</a></p>
+</div>
+</body>
+</html>
