@@ -18,7 +18,8 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Aura Tech Store product discount");
-        message.setText("Hello, we have a special offer for you please visit our website.");
+        message.setText("3ndna offers law md5ltsh shoftha hyfotko nos 3omrkoo" +
+                        "\nbnteer f elhawa whttbsto 3ndna .");
         mailSender.send(message);
         historyService.add("admin", "EMAIL", "Offer email sent to " + email + " about " + productName);
     }

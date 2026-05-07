@@ -6,7 +6,7 @@ import org.example.service.ProductService;
 import org.example.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
+//
 @Component
 public class DataLoader implements CommandLineRunner {
     private final UserService userService;
