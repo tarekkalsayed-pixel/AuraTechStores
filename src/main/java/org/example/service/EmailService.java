@@ -19,7 +19,7 @@ public class EmailService {
         message.setTo(email);
         message.setSubject("Aura Tech Store product discount");
         message.setText("3ndna offers law md5ltsh shoftha hyfotko nos 3omrkoo" +
-                        "bnteer f elhawa whttbsto 3ndna .");
+                        "\nbnteer f elhawa whttbsto 3ndna .");
         mailSender.send(message);
         historyService.add("admin", "EMAIL", "Offer email sent to " + email + " about " + productName);
     }
