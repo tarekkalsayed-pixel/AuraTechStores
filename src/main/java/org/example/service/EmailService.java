@@ -1,20 +1,25 @@
 package org.example.service;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
+    private final JavaMailSender mailSender;
     private final HistoryService historyService;
 
-    EmailService(HistoryService historyService) {
+    EmailService(JavaMailSender mailSender, HistoryService historyService) {
+        this.mailSender = mailSender;
         this.historyService = historyService;
     }
 
     public void sendOffer(String email, String productName) {
-        Thread thread = new Thread(() -> {
-            String msg = "Offer email sent to " + email;
-            historyService.add("admin", "EMAIL", msg + " about " + productName);
-        });
-        thread.start();
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Aura Tech Store Offer");
+        message.setText("Hello, we have a special offer for this product.");
+        mailSender.send(message);
+        historyService.add("admin", "EMAIL", "Offer email sent to " + email + " about " + productName);
     }
 }
