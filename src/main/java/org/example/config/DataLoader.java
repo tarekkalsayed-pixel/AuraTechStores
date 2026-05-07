@@ -46,10 +46,10 @@ public class DataLoader implements CommandLineRunner {
         if (!productService.getAllProducts().isEmpty()) {
             return;
         }
-        save("Aura Phone", "Phones", 33000, "Cairo", 6, "/images/phone.svg");
-        save("AuraBook Air", "Laptops", 58000, "Alexandria", 4, "/images/laptop.svg");
-        save("Aura Pods", "Audio", 7200, "Cairo", 12, "/images/headphones.svg");
-        save("Aura Watch", "Wearables", 12500, "Alexandria", 7, "/images/watch.svg");
+        save("Aura Phone", "Phones", 33000, "Cairo", 6, "/images/phone.jpeg");
+        save("AuraBook Air", "Laptops", 58000, "Alexandria", 4, "/images/laptop.jpeg");
+        save("Aura Pods", "Audio", 7200, "Cairo", 12, "/images/headphone.jpeg");
+        save("Aura Watch", "Wearables", 12500, "Alexandria", 7, "/images/watch.jpeg");
     }
 
     private void save(String name, String category, double price,
