@@ -35,6 +35,7 @@ public class ProductController {
         }
         model.addAttribute("products", products);
         model.addAttribute("lastBranch", lastBranch);
+        model.addAttribute("selectedBranch", branch);
         return "products";
     }
 }

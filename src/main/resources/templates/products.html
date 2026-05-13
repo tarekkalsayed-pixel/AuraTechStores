@@ -19,9 +19,9 @@
     <p>Last selected branch: <b th:text="${lastBranch}">None</b></p>
     <p class="note-light">Register to get notified when new offers are available.</p>
     <div class="actions">
-        <a class="btn" href="/products?branch=Cairo">Cairo</a>
-        <a class="btn btn-dark" href="/products?branch=Alexandria">Alexandria</a>
-        <a class="btn btn-dark" href="/products">All Products</a>
+        <a th:class="${selectedBranch == 'Cairo'} ? 'btn' : 'btn btn-dark'" href="/products?branch=Cairo">Cairo</a>
+        <a th:class="${selectedBranch == 'Alexandria'} ? 'btn' : 'btn btn-dark'" href="/products?branch=Alexandria">Alexandria</a>
+        <a th:class="${selectedBranch == null or #strings.isEmpty(selectedBranch)} ? 'btn' : 'btn btn-dark'" href="/products">All Products</a>
     </div>
 </section>
 <div class="container">
