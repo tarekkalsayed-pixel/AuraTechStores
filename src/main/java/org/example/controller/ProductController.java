@@ -4,6 +4,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.model.Product;
 import org.example.service.ProductService;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -24,6 +27,7 @@ public class ProductController {
     public String products(@RequestParam(required = false) String branch,
                            @CookieValue(value = "lastBranch", defaultValue = "None") String lastBranch,
                            HttpServletResponse response,
+                           Authentication auth,
                            Model model) {
         List<Product> products;
         if (branch == null || branch.isBlank()) {
@@ -36,6 +40,19 @@ public class ProductController {
         model.addAttribute("products", products);
         model.addAttribute("lastBranch", lastBranch);
         model.addAttribute("selectedBranch", branch);
+        boolean loggedIn = auth != null
+                && auth.isAuthenticated()
+                && !(auth instanceof AnonymousAuthenticationToken);
+        model.addAttribute("isLoggedIn", loggedIn);
+        if (loggedIn) {
+            String role = auth.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .filter(authority -> authority.startsWith("ROLE_"))
+                    .map(authority -> authority.substring("ROLE_".length()))
+                    .findFirst()
+                    .orElse("");
+            model.addAttribute("userRole", role);
+        }
         return "products";
     }
 }
