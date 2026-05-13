@@ -211,6 +211,37 @@ th, td {
     padding-top: 16px;
     border-top: 1px solid #eeeeee;
 }
+.cookie-locked {
+    overflow: hidden;
+}
+.cookie-consent {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,0.72);
+}
+.cookie-consent-box {
+    width: min(460px, 100%);
+    padding: 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    color: #121212;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+    text-align: center;
+}
+.cookie-consent-box h2 {
+    margin: 0 0 12px;
+    font-size: 30px;
+}
+.cookie-consent-box p {
+    margin: 0 0 22px;
+    color: #444444;
+    line-height: 1.45;
+}
 @media (max-width: 700px) {
     .nav {
         padding: 16px 22px;
