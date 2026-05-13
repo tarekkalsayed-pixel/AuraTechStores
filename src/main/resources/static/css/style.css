@@ -108,6 +108,10 @@ body {
     font-size: 22px;
     margin-bottom: 4px;
 }
+.discount {
+    color: #d93025;
+    font-weight: 800;
+}
 .badge {
     display: inline-block;
     margin-top: 14px;
@@ -197,6 +201,10 @@ th, td {
 }
 .note {
     color: #666666;
+}
+.note-light {
+    color: #d8d8d8;
+    font-size: 15px;
 }
 .card form {
     margin-top: 16px;

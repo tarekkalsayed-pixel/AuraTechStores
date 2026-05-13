@@ -31,13 +31,15 @@
             <p><b>Category:</b> <span th:text="${p.category}">Category</span></p>
             <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
             <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+            <p th:if="${p.discount > 0}" class="discount" th:text="${p.discount} + '% discount'">0% discount</p>
             <div class="actions">
                 <a class="btn" th:href="@{/admin/products/edit/{id}(id=${p.id})}">Edit</a>
                 <a class="btn btn-red" th:href="@{/admin/products/delete/{id}(id=${p.id})}">Delete</a>
             </div>
             <form action="/admin/send-email" method="post">
-                <label>Offer Email</label>
-                <input type="email" name="email" placeholder="customer@example.com" required>
+                <label>Offer Email
+                    <input type="email" name="email" placeholder="customer@example.com" required>
+                </label>
                 <input type="hidden" name="productName" th:value="${p.name}">
                 <button class="btn btn-dark" type="submit">Send Offer Email</button>
             </form>

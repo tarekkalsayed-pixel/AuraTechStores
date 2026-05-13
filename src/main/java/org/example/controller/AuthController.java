@@ -47,7 +47,17 @@ public class AuthController {
             return "register";
         }
         if (userService.findByUsername(user.getUsername()) != null) {
-            model.addAttribute("message", "Username already exists");
+            model.addAttribute("error", "Username already exists");
+            return "register";
+        }
+        String email = user.getEmail().trim().toLowerCase();
+        user.setEmail(email);
+        if (!user.getEmail().endsWith("@gmail.com")) {
+            model.addAttribute("error", "Email must end with @gmail.com");
+            return "register";
+        }
+        if (userService.emailExists(email)) {
+            model.addAttribute("error", "Email already exists");
             return "register";
         }
         user.setRole("USER");
