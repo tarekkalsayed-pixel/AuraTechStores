@@ -1,5 +1,5 @@
 package org.example.service;
-
+//middle layer bet el controller wel db
 import org.example.model.Product;
 import org.example.repository.ProductRepository;
 import org.springframework.stereotype.Service;

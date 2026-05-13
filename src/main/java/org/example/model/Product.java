@@ -1,5 +1,7 @@
 package org.example.model;
-
+//eli byStore el product data (name, price, stock, branch)
+// by connects el db m3 el application
+//Used f admin editing w user browsing
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,9 +15,11 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Product {
     @Id
+    //auto id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //required
     @NotBlank
     private String name;
 
