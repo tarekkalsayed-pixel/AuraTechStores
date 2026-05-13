@@ -4,6 +4,7 @@ import org.example.model.Product;
 import org.example.model.User;
 import org.example.service.ProductService;
 import org.example.service.UserService;
+import org.jspecify.annotations.NonNull;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 //
@@ -18,7 +19,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) {
+    public void run(String @NonNull ... args) {
         addUsers();
         addProducts();
     }
@@ -58,6 +59,7 @@ public class DataLoader implements CommandLineRunner {
         product.setName(name);
         product.setCategory(category);
         product.setPrice(price);
+        product.setDiscount(0);
         product.setBranch(branch);
         product.setStock(stock);
         product.setImageUrl(imageUrl);

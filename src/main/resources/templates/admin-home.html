@@ -37,8 +37,9 @@
                 <a class="btn btn-red" th:href="@{/admin/products/delete/{id}(id=${p.id})}">Delete</a>
             </div>
             <form action="/admin/send-email" method="post">
-                <label>Offer Email</label>
-                <input type="email" name="email" placeholder="customer@example.com" required>
+                <label>Offer Email
+                    <input type="email" name="email" placeholder="customer@example.com" required>
+                </label>
                 <input type="hidden" name="productName" th:value="${p.name}">
                 <button class="btn btn-dark" type="submit">Send Offer Email</button>
             </form>

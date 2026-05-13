@@ -18,35 +18,35 @@
     <p class="note">Save product details, branch stock and image path.</p>
     <form action="/admin/products/save" method="post" th:object="${product}">
         <input type="hidden" th:field="*{id}">
-        <label>Name</label>
-        <input type="text" th:field="*{name}" required>
+        <label for="name">Name</label>
+        <input id="name" type="text" th:field="*{name}" required>
         <p class="error" th:errors="*{name}"></p>
-        <label>Category</label>
-        <input type="text" th:field="*{category}" required>
+        <label for="category">Category</label>
+        <input id="category" type="text" th:field="*{category}" required>
         <p class="error" th:errors="*{category}"></p>
-        <label>Price</label>
-        <input type="number" step="0.01" th:field="*{price}" required min="1">
+        <label for="price">Price</label>
+        <input id="price" type="number" step="0.01" th:field="*{price}" required min="1">
         <p class="error" th:errors="*{price}"></p>
-        <label>Discount %</label>
-        <input type="number" th:field="*{discount}" min="0" max="100" required>
+        <label for="discount">Discount %</label>
+        <input id="discount" type="number" th:field="*{discount}" min="0" max="100" required>
         <p class="error" th:errors="*{discount}"></p>
-        <label>Branch</label>
-        <select th:field="*{branch}" required>
+        <label for="branch">Branch</label>
+        <select id="branch" th:field="*{branch}" required>
             <option value="Cairo">Cairo</option>
             <option value="Alexandria">Alexandria</option>
         </select>
-        <label>Stock</label>
-        <input type="number" th:field="*{stock}" required min="0">
+        <label for="stock">Stock</label>
+        <input id="stock" type="number" th:field="*{stock}" required min="0">
         <p class="error" th:errors="*{stock}"></p>
-        <label>Image Path</label>
-        <select th:field="*{imageUrl}" required>
+        <label for="imageUrl">Image Path</label>
+        <select id="imageUrl" th:field="*{imageUrl}" required>
             <option value="/images/phone.jpeg">Phone Image</option>
             <option value="/images/laptop.jpeg">Laptop Image</option>
             <option value="/images/headphone.jpeg">Headphones Image</option>
             <option value="/images/watch.jpeg">Watch Image</option>
         </select>
-        <label>Description</label>
-        <textarea th:field="*{description}" required maxlength="1000"></textarea>
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}" required maxlength="1000"></textarea>
         <p class="error" th:errors="*{description}"></p>
         <button class="btn" type="submit">Save Product</button>
     </form>

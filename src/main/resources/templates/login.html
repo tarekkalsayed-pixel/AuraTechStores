@@ -20,7 +20,6 @@
 
     <p th:if="${param.error}" class="error">Invalid username or password.</p>
     <p th:if="${param.logout}" class="note">You have been logged out successfully.</p>
-    <p th:if="${success}" class="note" th:text="${success}"></p>
 
     <form th:action="@{/login}" method="post">
         <label for="username">Username</label>
