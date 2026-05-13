@@ -10,8 +10,11 @@
     <div class="logo">Aura <span>Tech</span> Stores</div>
     <div>
         <a href="/products">Products</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        <a th:if="${currentUser == null}" href="/login">Login</a>
+        <a th:if="${currentUser == null}" href="/register">Register</a>
+        <a th:if="${currentUser != null and currentUser.role == 'ADMIN'}" href="/admin/home">Admin Home</a>
+        <a th:if="${currentUser != null and currentUser.role == 'USER'}" href="/user/home">User Home</a>
+        <a th:if="${currentUser != null}" href="/logout">Logout</a>
     </div>
 </div>
 <section class="hero">
