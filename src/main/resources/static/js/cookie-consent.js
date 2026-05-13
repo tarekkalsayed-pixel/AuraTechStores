@@ -1,5 +1,7 @@
 (function () {
-    var consentName = "auraCookieConsent";
+    document.cookie = "auraCookieConsent=; path=/; max-age=0; SameSite=Lax";
+
+    var consentName = "auraCookieSessionConsent";
     var accepted = document.cookie.split(";").some(function (cookie) {
         return cookie.trim() === consentName + "=accepted";
     });
@@ -22,8 +24,7 @@
     document.body.appendChild(overlay);
 
     document.getElementById("acceptAllCookies").addEventListener("click", function () {
-        var maxAge = 60 * 60 * 24 * 365;
-        document.cookie = consentName + "=accepted; path=/; max-age=" + maxAge + "; SameSite=Lax";
+        document.cookie = consentName + "=accepted; path=/; SameSite=Lax";
         overlay.remove();
         document.body.classList.remove("cookie-locked");
     });
