@@ -108,6 +108,10 @@ body {
     font-size: 22px;
     margin-bottom: 4px;
 }
+.discount {
+    color: #d93025;
+    font-weight: 800;
+}
 .badge {
     display: inline-block;
     margin-top: 14px;

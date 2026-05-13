@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //Spring Boot automatically creates the implementation at runtime.
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
+    boolean existsByEmail(String email);
 }

@@ -33,6 +33,11 @@
             <p><b>Category:</b> <span th:text="${p.category}">Phones</span></p>
             <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
             <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+            <p th:if="${p.discount > 0}" class="discount">
+                After discount:
+                <span th:text="${p.discountPrice} + ' EGP'">0 EGP</span>
+                <span th:text="'(-' + ${p.discount} + '%)'">(-0%)</span>
+            </p>
         </div>
     </div>
 </div>

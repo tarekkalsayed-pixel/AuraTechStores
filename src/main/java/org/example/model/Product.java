@@ -4,8 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Product {
@@ -22,6 +25,10 @@ public class Product {
     @Min(1)
     private double price;
 
+    @Min(0)
+    @Max(100)
+    private Integer discount = 0;
+
     @NotBlank
     private String branch;
 
@@ -32,6 +39,8 @@ public class Product {
     private String imageUrl;
 
     @NotBlank
+    @Size(max = 1000)
+    @Column(length = 1000)
     private String description;
 
     public Long getId() {
@@ -64,6 +73,18 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Integer getDiscount() {
+        return discount == null ? 0 : discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public double getDiscountPrice() {
+        return price - (price * getDiscount() / 100);
     }
 
     public String getBranch() {
