@@ -2,40 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Tech User Home</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="nav">
     <div class="logo">Aura <span>Tech</span> User</div>
-    <div>
-        <a href="/user/profile">Profile</a>
-        <a href="/products">Products</a>
-        <a href="/logout">Logout</a>
+    <div class="nav-actions">
+        <a th:href="@{/user/profile}">Profile</a>
+        <a th:href="@{/products}">Products</a>
+        <form th:action="@{/logout}" method="post" class="nav-form">
+            <button type="submit" class="nav-button">Logout</button>
+        </form>
     </div>
 </div>
 <section class="hero">
-    <h1>Welcome to Aura Tech Stores.</h1>
-    <p>Browse elegant electronics and check branch stock.</p>
+    <p class="eyebrow">AURA TECH STORES</p>
+    <h1>Technology, curated by branch.</h1>
+    <p>Browse the latest catalog, compare pricing, and check stock availability across Aura Tech locations.</p>
 </section>
 <div class="container">
     <div class="card-grid">
-        <div class="card" th:each="p : ${products}">
-            <img th:src="${p.imageUrl}" alt="Product image">
+        <article class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" th:alt="${p.name} + ' product image'">
             <span class="badge" th:text="${p.branch}">Branch</span>
             <h2 th:text="${p.name}">Product</h2>
             <p th:text="${p.description}">Description</p>
             <p><b>Category:</b> <span th:text="${p.category}">Category</span></p>
             <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
-            <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+            <h3 th:text="${#numbers.formatDecimal(p.price, 1, 2)} + ' EGP'">0 EGP</h3>
             <p th:if="${p.discount > 0}" class="discount">
                 After discount:
-                <span th:text="${p.discountPrice} + ' EGP'">0 EGP</span>
+                <span th:text="${#numbers.formatDecimal(p.discountPrice, 1, 2)} + ' EGP'">0 EGP</span>
                 <span th:text="'(-' + ${p.discount} + '%)'">(-0%)</span>
             </p>
-        </div>
+        </article>
     </div>
 </div>
-<script src="/js/cookie-consent.js"></script>
+<script th:src="@{/js/cookie-consent.js}"></script>
 </body>
 </html>
