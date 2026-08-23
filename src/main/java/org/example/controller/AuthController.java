@@ -46,20 +46,22 @@ public class AuthController {
         if (result.hasErrors()) {
             return "register";
         }
-        if (userService.findByUsername(user.getUsername()) != null) {
+
+        String username = user.getUsername().trim();
+        String email = user.getEmail().trim().toLowerCase();
+        user.setUsername(username);
+        user.setEmail(email);
+
+        if (userService.findByUsername(username) != null) {
             model.addAttribute("error", "Username already exists");
             return "register";
         }
-        String email = user.getEmail().trim().toLowerCase();
-        user.setEmail(email);
-        if (!user.getEmail().endsWith("@gmail.com")) {
-            model.addAttribute("error", "Email must end with @gmail.com");
-            return "register";
-        }
+
         if (userService.emailExists(email)) {
             model.addAttribute("error", "Email already exists");
             return "register";
         }
+
         user.setRole("USER");
         userService.save(user);
         historyService.add(user.getUsername(), "REGISTER", "New user account");
@@ -71,6 +73,7 @@ public class AuthController {
         User user = userService.findByUsername(auth.getName());
         session.setAttribute("username", user.getUsername());
         session.setAttribute("role", user.getRole());
+
         if ("ADMIN".equals(user.getRole())) {
             return "redirect:/admin/home";
         }
