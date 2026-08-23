@@ -1,4 +1,30 @@
+# Build output
 target/
+
+# IDE files
 .idea/
 *.iml
+*.ipr
+*.iws
+.vscode/
+workspace.xml
+
+# Local database/runtime data
 data/
+*.mv.db
+*.trace.db
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and OS metadata
+*.log
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
