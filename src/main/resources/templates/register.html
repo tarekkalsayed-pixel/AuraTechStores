@@ -2,39 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Aura Tech Stores</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="nav">
     <div class="logo">Aura <span>Tech</span> Stores</div>
-    <div>
+    <div class="nav-actions">
         <a th:href="@{/}">Products</a>
         <a th:href="@{/login}">Login</a>
     </div>
 </div>
 
 <div class="form-box">
+    <p class="eyebrow dark">CUSTOMER ACCOUNT</p>
     <h1>Create Account</h1>
-    <p class="note">Register a new customer account.</p>
+    <p class="note">Register to access the authenticated customer area.</p>
 
     <p th:if="${error}" class="error" th:text="${error}"></p>
 
     <form th:action="@{/register}" th:object="${user}" method="post">
         <label for="username">Username</label>
-        <input id="username" type="text" th:field="*{username}" placeholder="Choose username" required>
+        <input id="username" type="text" th:field="*{username}" minlength="4" maxlength="32" autocomplete="username" placeholder="Choose username" required>
+        <p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 
         <label for="email">Email</label>
-        <input id="email" type="email" th:field="*{email}" placeholder="name@example.com" required>
+        <input id="email" type="email" th:field="*{email}" maxlength="120" autocomplete="email" placeholder="name@example.com" required>
+        <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 
         <label for="password">Password</label>
-        <input id="password" type="password" th:field="*{password}" placeholder="Choose password" required>
+        <input id="password" type="password" th:field="*{password}" minlength="8" maxlength="72" autocomplete="new-password" placeholder="At least 8 characters" required>
+        <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">Create Account</button>
     </form>
 
     <p class="note">Already have an account? <a th:href="@{/login}">Login</a></p>
 </div>
-<script src="/js/cookie-consent.js"></script>
+<script th:src="@{/js/cookie-consent.js}"></script>
 </body>
 </html>
