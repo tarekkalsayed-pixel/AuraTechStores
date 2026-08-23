@@ -71,7 +71,7 @@ public class AdminController {
         return "redirect:/admin/home";
     }
 
-    @GetMapping("/admin/products/delete/{id}")
+    @PostMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Long id, Authentication auth) {
         productService.deleteProduct(id);
         historyService.add(auth.getName(), "DELETE", "Product id " + id);
@@ -80,8 +80,10 @@ public class AdminController {
 
     @PostMapping("/admin/send-email")
     public String sendEmail(@RequestParam String email,
-                            @RequestParam String productName) {
+                            @RequestParam String productName,
+                            Authentication auth) {
         emailService.sendOffer(email, productName);
+        historyService.add(auth.getName(), "EMAIL", "Offer sent for " + productName);
         return "redirect:/admin/history";
     }
 
