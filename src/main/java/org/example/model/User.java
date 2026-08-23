@@ -1,7 +1,5 @@
 package org.example.model;
 
-// storing user data , connected user data to database table , validating input data
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,27 +7,27 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-//
+
 @Entity(name = "app_user")
 public class User {
-    // ID  "primary key"
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // stores username
-    // @NotBlank Prevents empty usernames ""
+
     @NotBlank
-    @Size(min = 4)
+    @Size(min = 4, max = 32)
     private String username;
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 8, max = 72)
     private String password;
 
     @NotBlank
     @Email
+    @Size(max = 120)
     private String email;
-    // y3ni ay most5dm gded 3ady bykon user
+
     private String role = "USER";
 
     public Long getId() {
