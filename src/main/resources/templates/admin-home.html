@@ -2,50 +2,65 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Tech Admin</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="nav">
     <div class="logo">Aura <span>Tech</span> Admin</div>
-    <div>
-        <a href="/admin/profile">Profile</a>
-        <a href="/admin/history">History</a>
-        <a href="/logout">Logout</a>
+    <div class="nav-actions">
+        <a th:href="@{/admin/profile}">Profile</a>
+        <a th:href="@{/admin/history}">History</a>
+        <form th:action="@{/logout}" method="post" class="nav-form">
+            <button type="submit" class="nav-button">Logout</button>
+        </form>
     </div>
 </div>
 <section class="hero">
-    <h1>Product management dashboard.</h1>
-    <p>Add, edit, delete products and manage branch stock.</p>
+    <p class="eyebrow">ADMIN CONSOLE</p>
+    <h1>Product management, without the clutter.</h1>
+    <p>Manage inventory, branch stock, pricing, discounts, and customer offer emails from one dashboard.</p>
     <div class="actions">
-        <a class="btn" href="/admin/products/add">Add Product</a>
+        <a class="btn" th:href="@{/admin/products/add}">Add Product</a>
     </div>
 </section>
 <div class="container">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow dark">CATALOG</p>
+            <h1>Inventory</h1>
+        </div>
+        <span class="count-pill" th:text="${#lists.size(products)} + ' products'">0 products</span>
+    </div>
+
     <div class="card-grid">
-        <div class="card" th:each="p : ${products}">
-            <img th:src="${p.imageUrl}" alt="Product image">
+        <article class="card" th:each="p : ${products}">
+            <img th:src="${p.imageUrl}" th:alt="${p.name} + ' product image'">
             <span class="badge" th:text="${p.branch}">Branch</span>
             <h2 th:text="${p.name}">Product</h2>
             <p th:text="${p.description}">Description</p>
             <p><b>Category:</b> <span th:text="${p.category}">Category</span></p>
             <p><b>Stock:</b> <span th:text="${p.stock}">0</span></p>
-            <h3 th:text="${p.price} + ' EGP'">0 EGP</h3>
+            <h3 th:text="${#numbers.formatDecimal(p.price, 1, 2)} + ' EGP'">0 EGP</h3>
             <p th:if="${p.discount > 0}" class="discount" th:text="${p.discount} + '% discount'">0% discount</p>
-            <div class="actions">
+
+            <div class="actions action-row">
                 <a class="btn" th:href="@{/admin/products/edit/{id}(id=${p.id})}">Edit</a>
-                <a class="btn btn-red" th:href="@{/admin/products/delete/{id}(id=${p.id})}">Delete</a>
+                <form th:action="@{/admin/products/delete/{id}(id=${p.id})}" method="post" class="inline-form">
+                    <button class="btn btn-red" type="submit" aria-label="Delete product">Delete</button>
+                </form>
             </div>
-            <form action="/admin/send-email" method="post">
-                <label>Offer Email
-                    <input type="email" name="email" placeholder="customer@example.com" required>
-                </label>
+
+            <form th:action="@{/admin/send-email}" method="post" class="offer-form">
+                <label th:for="${'offer-email-' + p.id}">Offer Email</label>
+                <input th:id="${'offer-email-' + p.id}" type="email" name="email" placeholder="customer@example.com" required>
                 <input type="hidden" name="productName" th:value="${p.name}">
                 <button class="btn btn-dark" type="submit">Send Offer Email</button>
             </form>
-        </div>
+        </article>
     </div>
 </div>
-<script src="/js/cookie-consent.js"></script>
+<script th:src="@{/js/cookie-consent.js}"></script>
 </body>
 </html>
